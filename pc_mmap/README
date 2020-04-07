@@ -1,0 +1,14 @@
+The assignment is divides as follows:
+
+A mapper process is created using the fork() system call. It takes input tuples (expected as below format) from a file in the form of (userid,action,topic) and converts them into another tuple of form (userid,topic,score). The thread parses the input string and converts it into tuples of required form as per rules mentioned in the assignment using standard string parsing logic.
+Input Tuple Format: "(4 char userID, 1 char action, 15 char topic)"
+
+Multiple reducer processes are created using the fork() systems call. Each new user is processed by an individual reducer process. Each process takes input in the form of (userid, topic, score) and converts them into output tuple into the form of (userid, topic, totalscore). Each process keeps an unordered map to keep a tally of total score per topic for a user.
+
+mmap system call is used for the IPC between the mapper process and reducer processes.
+
+Input file is stored as input.txt in the project directory.
+
+Running the program:
+1. make
+2. ./output buffer_size consumer_threads ./test/input_file
